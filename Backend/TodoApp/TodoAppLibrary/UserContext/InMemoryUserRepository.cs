@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using EnsureThat;
 using TodoAppLibrary.Tools;
@@ -43,6 +44,11 @@ namespace TodoAppLibrary.UserContext
             _users.Add(user);
 
             return newId;
+        }
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _users;
         }
 
         private readonly List<User> _users;

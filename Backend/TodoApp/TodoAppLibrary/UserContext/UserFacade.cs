@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using EnsureThat;
 using TodoAppLibrary.CryptoContext;
 using TodoAppLibrary.Tools;
@@ -62,6 +64,30 @@ namespace TodoAppLibrary.UserContext
             var currentUser = _userRepository.GetUserById(userId);
 
             return currentUser.FromUserToView();
+        }
+
+        public UserView GerUserInfoByEmail(string email)
+        {
+            Ensure.String.IsNotEmptyOrWhitespace(email);
+
+            var currentUser = _userRepository.GetUserByEmail(email);
+
+            return currentUser.FromUserToView();
+        }
+
+        public IEnumerable<UserView> GetUsersByUserName(string username)
+        {
+            Ensure.String.IsNotEmptyOrWhitespace(username);
+            username = username.ToLower();
+
+            var matchingUsers = _userRepository.GetAllUsers().Where(u => 
+                u.UserInfo.Username.ToLower().StartsWith(username));
+
+            var result = new List<UserView>();
+
+            matchingUsers.ToList().ForEach(u => result.Add(u.FromUserToView()));
+
+            return result;
         }
 
         private readonly IUserRepository _userRepository;

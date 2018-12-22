@@ -13,5 +13,7 @@ namespace TodoAppLibrary.UserContext
         void CreateNewUser(string username, string password,
             string email, DateTimeOffset dateOfBirth);
         UserView GerUserInfo(Identifier userId);
+        UserView GerUserInfoByEmail(string email);
+        IEnumerable<UserView> GetUsersByUserName(string username);
     }
 }
