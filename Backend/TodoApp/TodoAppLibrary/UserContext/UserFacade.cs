@@ -12,6 +12,10 @@ namespace TodoAppLibrary.UserContext
 {
     public class UserFacade : IUserFacade
     {
+        private readonly ICryptoTool _cryptoTool;
+
+        private readonly IUserRepository _userRepository;
+
         public UserFacade(
             IUserRepository userRepository,
             ICryptoTool cryptoTool)
@@ -80,7 +84,7 @@ namespace TodoAppLibrary.UserContext
             Ensure.String.IsNotEmptyOrWhitespace(username);
             username = username.ToLower();
 
-            var matchingUsers = _userRepository.GetAllUsers().Where(u => 
+            var matchingUsers = _userRepository.GetAllUsers().Where(u =>
                 u.UserInfo.Username.ToLower().StartsWith(username));
 
             var result = new List<UserView>();
@@ -89,8 +93,5 @@ namespace TodoAppLibrary.UserContext
 
             return result;
         }
-
-        private readonly IUserRepository _userRepository;
-        private readonly ICryptoTool _cryptoTool;
     }
 }

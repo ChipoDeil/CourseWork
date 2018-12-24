@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using TodoAppLibrary.Tools;
 
 namespace TodoAppLibrary.TaskContext.Views
 {
     public class TaskView
     {
-        public IEnumerable<MemberView> Members { get; }
-        public bool Important { get; }
-        public bool Done { get; }
-        public string TaskTitle { get; }
-        public Identifier TaskId { get; }
-
         public TaskView(
             IEnumerable<MemberView> members,
             bool important,
@@ -26,5 +18,11 @@ namespace TodoAppLibrary.TaskContext.Views
             TaskTitle = taskTitle;
             TaskId = taskId;
         }
+
+        public IEnumerable<MemberView> Members { get; }
+        public bool Important { get; }
+        public bool Done { get; }
+        public string TaskTitle { get; }
+        public Identifier TaskId { get; }
     }
 }

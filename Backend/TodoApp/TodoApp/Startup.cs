@@ -33,8 +33,8 @@ namespace TodoApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            IUserRepository userRepository = default(IUserRepository);
-            ITaskRepository taskRepository = default(ITaskRepository);
+            var userRepository = default(IUserRepository);
+            var taskRepository = default(ITaskRepository);
 
             if (Configuration.GetValue<bool>("UseDB"))
             {
@@ -86,16 +86,12 @@ namespace TodoApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+
             app.UseMvc();
 
             app.UseSwagger();
             app.UseSwaggerUI(current => { current.SwaggerEndpoint("/swagger/v1/swagger.json", "QrServer"); });
-
         }
 
         private void ConfigureAuth(IServiceCollection services)

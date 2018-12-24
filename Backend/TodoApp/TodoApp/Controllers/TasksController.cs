@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using EnsureThat;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Extensions;
 using TodoApp.Models.TasksModels;
@@ -18,8 +14,15 @@ namespace TodoApp.Controllers
     [ApiController]
     public class TasksController : ControllerBase
     {
+        private readonly ITaskFacade _taskFacade;
+
+        public TasksController(ITaskFacade taskFacade)
+        {
+            _taskFacade = Ensure.Any.IsNotNull(taskFacade);
+        }
+
         /// <summary>
-        /// Получить все задачи, доступные пользователю
+        ///     Получить все задачи, доступные пользователю
         /// </summary>
         [HttpGet]
         [Authorize]
@@ -55,7 +58,7 @@ namespace TodoApp.Controllers
         [Authorize]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        [ProducesResponseType(typeof(AddNewTaskResponseModel) ,200)]
+        [ProducesResponseType(typeof(AddNewTaskResponseModel), 200)]
         public IActionResult AddNewTask([FromBody] AddNewTaskRequestModel model)
         {
             var userId = Request.GetUserId();
@@ -95,13 +98,6 @@ namespace TodoApp.Controllers
             _taskFacade.MakeTaskDone(new Identifier(taskId), new Identifier(userId));
 
             return Ok();
-        }
-
-        private readonly ITaskFacade _taskFacade;
-
-        public TasksController(ITaskFacade taskFacade)
-        {
-            _taskFacade = Ensure.Any.IsNotNull(taskFacade);
         }
     }
 }

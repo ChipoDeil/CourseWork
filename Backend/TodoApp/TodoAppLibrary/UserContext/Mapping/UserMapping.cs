@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TodoAppLibrary.UserContext.Views;
+﻿using TodoAppLibrary.UserContext.Views;
 
 namespace TodoAppLibrary.UserContext.Mapping
 {
@@ -9,7 +6,8 @@ namespace TodoAppLibrary.UserContext.Mapping
     {
         public static UserView FromUserToView(this User user)
         {
-            return new UserView(user.UserInfo.Username,user.Credentials.Email, user.UserInfo.Photo, user.UserInfo.Identifier);
+            return new UserView(user.UserInfo.Username, user.Credentials.Email, user.UserInfo.Photo,
+                user.UserInfo.Identifier);
         }
     }
 }

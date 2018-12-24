@@ -7,7 +7,6 @@ namespace TodoAppLibrary.TaskContext.Exceptions
     {
         public TaskNotFoundException(Identifier taskId) : base($"task with id {taskId.Id} not found")
         {
-
         }
     }
 }

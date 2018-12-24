@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO.Compression;
 using System.Linq;
 using EnsureThat;
 using TodoAppLibrary.Tools;
@@ -9,6 +8,8 @@ namespace TodoAppLibrary.UserContext
 {
     public class InMemoryUserRepository : IUserRepository
     {
+        private readonly List<User> _users;
+
         public InMemoryUserRepository()
         {
             _users = new List<User>();
@@ -50,7 +51,5 @@ namespace TodoAppLibrary.UserContext
         {
             return _users;
         }
-
-        private readonly List<User> _users;
     }
 }

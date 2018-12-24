@@ -5,7 +5,6 @@ namespace TodoApp.Models.MembersModels
 {
     public class AddNewViewerRequestModel
     {
-        [Required]
-        public Identifier AddingUserId { get; set; }
+        [Required] public Identifier AddingUserId { get; set; }
     }
 }

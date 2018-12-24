@@ -9,6 +9,9 @@ namespace TodoAppLibrary.TaskContext
 {
     public class TaskFacade : ITaskFacade
     {
+        private readonly ITaskRepository _taskRepository;
+        private readonly IUserRepository _userRepository;
+
         public TaskFacade(
             IUserRepository userRepository,
             ITaskRepository taskRepository)
@@ -113,9 +116,5 @@ namespace TodoAppLibrary.TaskContext
 
             return _taskRepository.AddTask(new Task(taskTitle, userId, important));
         }
-
-        private readonly ITaskRepository _taskRepository;
-        private readonly IUserRepository _userRepository;
-
     }
 }

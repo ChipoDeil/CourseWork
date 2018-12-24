@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp", "TodoApp\TodoApp.csproj", "{AE264C78-A809-4F14-B5CB-2587B76BDB6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp", "TodoApp\TodoApp.csproj", "{AE264C78-A809-4F14-B5CB-2587B76BDB6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoAppLibrary", "TodoAppLibrary\TodoAppLibrary.csproj", "{B90D1B07-28BF-4C02-9264-97BDF1B754F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoAppLibrary", "TodoAppLibrary\TodoAppLibrary.csproj", "{B90D1B07-28BF-4C02-9264-97BDF1B754F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

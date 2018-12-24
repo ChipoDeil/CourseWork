@@ -8,6 +8,8 @@ namespace TodoAppLibrary.TaskContext
 {
     public class InMemoryTaskRepository : ITaskRepository
     {
+        private readonly List<Task> _tasks;
+
         public InMemoryTaskRepository()
         {
             _tasks = new List<Task>();
@@ -37,7 +39,5 @@ namespace TodoAppLibrary.TaskContext
 
             return newTaskId;
         }
-
-        private readonly List<Task> _tasks;
     }
 }

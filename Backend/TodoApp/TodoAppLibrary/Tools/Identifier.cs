@@ -4,8 +4,6 @@ namespace TodoAppLibrary.Tools
 {
     public class Identifier
     {
-        public int Id { get; }
-
         internal Identifier()
         {
             Id = 0;
@@ -15,5 +13,7 @@ namespace TodoAppLibrary.Tools
         {
             Id = Ensure.Any.IsNotDefault(id);
         }
+
+        public int Id { get; }
     }
 }

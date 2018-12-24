@@ -5,7 +5,6 @@ namespace TodoApp.Models.MembersModels
 {
     public class DeleteTaskMemberRequestModel
     {
-        [Required]
-        public Identifier DeletingUserId { get; set; }
+        [Required] public Identifier DeletingUserId { get; set; }
     }
 }

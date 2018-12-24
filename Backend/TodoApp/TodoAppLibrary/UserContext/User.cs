@@ -5,9 +5,6 @@ namespace TodoAppLibrary.UserContext
 {
     public class User
     {
-        internal Credentials Credentials { get; set; }
-        internal UserInfo UserInfo { get; set; }
-
         public User(string email, string password, string userName, DateTimeOffset dateOfBirth)
         {
             Ensure.String.IsNotEmptyOrWhitespace(email);
@@ -24,6 +21,9 @@ namespace TodoAppLibrary.UserContext
             Credentials = Ensure.Any.IsNotNull(credentials);
             UserInfo = Ensure.Any.IsNotNull(userInfo);
         }
+
+        internal Credentials Credentials { get; set; }
+        internal UserInfo UserInfo { get; set; }
 
         internal void AddPhoto(string fileName)
         {

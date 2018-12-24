@@ -4,11 +4,11 @@ namespace TodoApp.Models.TasksModels
 {
     public class AddNewTaskResponseModel
     {
-        public Identifier TaskId { get; }
-
         public AddNewTaskResponseModel(Identifier taskId)
         {
             TaskId = taskId;
         }
+
+        public Identifier TaskId { get; }
     }
 }

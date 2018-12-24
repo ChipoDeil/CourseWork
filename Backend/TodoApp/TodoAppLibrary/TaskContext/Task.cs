@@ -1,20 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EnsureThat;
 using TodoAppLibrary.TaskContext.Exceptions;
 using TodoAppLibrary.Tools;
-using Ensure = EnsureThat.Ensure;
 
 namespace TodoAppLibrary.TaskContext
 {
     public class Task
     {
-        internal Identifier Identifier { get; set; }
-        internal bool Done { get; set; }
-        internal bool Important { get; set; }
-        internal string TaskTitle { get; set; }
-        internal List<TaskMember> Members { get; }
-
-        internal Task(Identifier identifier, bool done, bool important, 
+        internal Task(Identifier identifier, bool done, bool important,
             string taskTitle, List<TaskMember> members)
         {
             Identifier = identifier;
@@ -30,11 +24,17 @@ namespace TodoAppLibrary.TaskContext
             Important = important;
             Identifier = new Identifier();
             TaskTitle = Ensure.String.IsNotNullOrWhiteSpace(taskTitle);
-            Members = new List<TaskMember>()
+            Members = new List<TaskMember>
             {
                 new TaskMember(creatorId, MemberRole.Creator)
             };
         }
+
+        internal Identifier Identifier { get; set; }
+        internal bool Done { get; set; }
+        internal bool Important { get; set; }
+        internal string TaskTitle { get; set; }
+        internal List<TaskMember> Members { get; }
 
         internal void MakeDone(Identifier memberId)
         {
@@ -45,7 +45,7 @@ namespace TodoAppLibrary.TaskContext
             Ensure.Any.IsNotNull(currentMember, nameof(currentMember),
                 opt => opt.WithException(new MemberNotFoundException(memberId)));
             Ensure.Bool.IsTrue(currentMember.Role == MemberRole.Creator ||
-                currentMember.Role == MemberRole.Redactor,
+                               currentMember.Role == MemberRole.Redactor,
                 nameof(memberId),
                 opt => opt.WithException(new MemberHasNoPermissionsException(memberId)));
 
@@ -80,7 +80,7 @@ namespace TodoAppLibrary.TaskContext
             Ensure.Bool.IsTrue(Members.FirstOrDefault(m => m.MemberId.Id == invitedId.Id) == default(TaskMember),
                 nameof(invitedId), opt => opt.WithException(new AlreadyMemberException(invitedId)));
             Ensure.Bool.IsTrue(
-                currentMember.Role == MemberRole.Creator || 
+                currentMember.Role == MemberRole.Creator ||
                 currentMember.Role == MemberRole.Redactor,
                 nameof(inviterId),
                 opt => opt.WithException(new MemberHasNoPermissionsException(inviterId)));

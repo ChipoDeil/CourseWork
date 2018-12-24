@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EnsureThat;
+﻿using EnsureThat;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using TodoApp.Extensions;
 using TodoApp.Models.MembersModels;
 using TodoAppLibrary.TaskContext;
@@ -18,6 +12,13 @@ namespace TodoApp.Controllers
     [ApiController]
     public class MembersController : ControllerBase
     {
+        private readonly ITaskFacade _taskFacade;
+
+        public MembersController(ITaskFacade taskFacade)
+        {
+            _taskFacade = Ensure.Any.IsNotNull(taskFacade);
+        }
+
         [Route("viewers")]
         [HttpPost]
         [Authorize]
@@ -70,12 +71,5 @@ namespace TodoApp.Controllers
 
             return Ok();
         }
-
-        public MembersController(ITaskFacade taskFacade)
-        {
-            _taskFacade = Ensure.Any.IsNotNull(taskFacade);
-        }
-
-        private readonly ITaskFacade _taskFacade;
     }
 }

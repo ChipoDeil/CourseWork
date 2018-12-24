@@ -5,7 +5,6 @@ namespace TodoApp.Models.MembersModels
 {
     public class AddNewRedactorRequestModel
     {
-        [Required]
-        public Identifier RedactorId { get; set; }
+        [Required] public Identifier RedactorId { get; set; }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TodoAppLibrary.Tools;
 
 namespace TodoAppLibrary.TaskContext.Exceptions
@@ -10,7 +8,6 @@ namespace TodoAppLibrary.TaskContext.Exceptions
         public MemberHasNoPermissionsException(Identifier memberId) : base(
             $"Member with id {memberId.Id} has no permission to do that")
         {
-
         }
     }
 }

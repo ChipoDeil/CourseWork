@@ -9,22 +9,31 @@ namespace TodoApp.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
+        private readonly IJwtIssuer _jwtIssuer;
+        private readonly IUserFacade _userFacade;
+
+        public AuthenticationController(IJwtIssuer jwtIssuer, IUserFacade userFacade)
+        {
+            _jwtIssuer = jwtIssuer;
+            _userFacade = userFacade;
+        }
+
         /// <summary>
-        /// Регистрация в системе
+        ///     Регистрация в системе
         /// </summary>
         [HttpPost]
         [ProducesResponseType(401)]
         [ProducesResponseType(200)]
         public IActionResult Register([FromBody] RegistrateRequestModel model)
         {
-            _userFacade.CreateNewUser(model.Username, model.Password, 
+            _userFacade.CreateNewUser(model.Username, model.Password,
                 model.Email, model.DateOfBirth);
 
             return Ok();
         }
 
         /// <summary>
-        /// Логин пользователя
+        ///     Логин пользователя
         /// </summary>
         [HttpPut]
         [ProducesResponseType(401)]
@@ -39,16 +48,6 @@ namespace TodoApp.Controllers
                 currentUserView.Identifier.Id), currentUserView.Username);
 
             return Ok(result);
-
-        }
-
-        private readonly IJwtIssuer _jwtIssuer;
-        private readonly IUserFacade _userFacade;
-
-        public AuthenticationController(IJwtIssuer jwtIssuer, IUserFacade userFacade)
-        {
-            _jwtIssuer = jwtIssuer;
-            _userFacade = userFacade;
         }
     }
 }
