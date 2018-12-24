@@ -5,7 +5,7 @@ using TodoAppLibrary.UserContext;
 
 namespace TodoApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {

@@ -108,7 +108,6 @@ namespace TodoAppLibrary.TaskContext
         public Identifier AddTask(Identifier userId, string taskTitle, bool important)
         {
             Ensure.Any.IsNotNull(userId);
-            Ensure.String.IsNotEmptyOrWhitespace(taskTitle);
 
             var currentUser = _userRepository.GetUserById(userId);
 

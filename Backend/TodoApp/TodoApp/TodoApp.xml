@@ -4,5 +4,30 @@
         <name>TodoApp</name>
     </assembly>
     <members>
+        <member name="M:TodoApp.Controllers.AuthenticationController.Register(TodoApp.Models.AuthenticationModels.RegistrateRequestModel)">
+            <summary>
+            Регистрация в системе
+            </summary>
+        </member>
+        <member name="M:TodoApp.Controllers.AuthenticationController.Login(TodoApp.Models.AuthenticationModels.LoginRequestModel)">
+            <summary>
+            Логин пользователя
+            </summary>
+        </member>
+        <member name="M:TodoApp.Controllers.TasksController.GetAllUserTasks">
+            <summary>
+            Получить все задачи, доступные пользователю
+            </summary>
+        </member>
+        <member name="P:TodoApp.Models.AuthenticationModels.LoginResponseModel.Token">
+            <summary>
+            Токен пользователя
+            </summary>
+        </member>
+        <member name="P:TodoApp.Models.AuthenticationModels.LoginResponseModel.Username">
+            <summary>
+            Username пользователя
+            </summary>
+        </member>
     </members>
 </doc>

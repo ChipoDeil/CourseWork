@@ -85,7 +85,7 @@ namespace TodoAppLibrary.TaskContext
                 nameof(inviterId),
                 opt => opt.WithException(new MemberHasNoPermissionsException(inviterId)));
 
-            Members.Add(new TaskMember(inviterId, MemberRole.Viewer));
+            Members.Add(new TaskMember(invitedId, MemberRole.Viewer));
         }
 
         internal void AddRedactor(Identifier inviterId, Identifier invitedId)
@@ -102,7 +102,7 @@ namespace TodoAppLibrary.TaskContext
             Ensure.Bool.IsTrue(currentMember.Role == MemberRole.Creator, nameof(inviterId),
                 opt => opt.WithException(new MemberHasNoPermissionsException(inviterId)));
 
-            Members.Add(new TaskMember(inviterId, MemberRole.Redactor));
+            Members.Add(new TaskMember(invitedId, MemberRole.Redactor));
         }
 
         internal void DeleteMember(Identifier initiator, Identifier deleting)

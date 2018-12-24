@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -66,7 +68,10 @@ namespace TodoApp
                     Type = "apiKey"
                 });
                 current.DescribeAllEnumsAsStrings();
-                current.IncludeXmlComments($@"{AppDomain.CurrentDomain.BaseDirectory}/todoApp.xml");
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                current.IncludeXmlComments(xmlPath);
+                current.DescribeAllEnumsAsStrings();
             });
 
             services.AddSingleton<IUserFacade>(userFacade);
@@ -85,11 +90,12 @@ namespace TodoApp
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseMvc();
 
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(current => { current.SwaggerEndpoint("/swagger/v1/swagger.json", "QrServer"); });
 
-            app.UseMvc();
         }
 
         private void ConfigureAuth(IServiceCollection services)
